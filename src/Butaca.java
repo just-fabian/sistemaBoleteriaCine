@@ -14,4 +14,12 @@ public class Butaca {
     public void ocuparButaca(){
         disponible = false;
     }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
 }
