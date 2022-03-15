@@ -1,3 +1,9 @@
 public interface Servicio {
-    void test();
+    public void generarFactura();
+
+    public void comprarBoletos();
+
+    public void generarPuntos();
+
+    public void generarTicket();
 }
