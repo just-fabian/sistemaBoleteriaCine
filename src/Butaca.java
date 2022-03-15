@@ -1,5 +1,17 @@
 public class Butaca {
-    // test fabian
-    // test santiago
-    // test Jefersson
+    String fila;
+    int columna;
+    String identificador;
+    boolean disponible;
+
+    public Butaca(String fila, int columna){
+        this.fila = fila;
+        this.columna = columna;
+        identificador = fila + columna;
+        disponible = true;
+    }
+
+    public void ocuparButaca(){
+        disponible = false;
+    }
 }
