@@ -70,6 +70,13 @@ public class Cine {
 
         if(deseaIntroducirCarnet.equals("s")){
             System.out.println("Introduzca su carnet");
+
+            while (!scan.hasNextInt()) {
+                System.out.println("Introduce un valor correcto: ");
+                scan = new Scanner(System.in);
+                scan.hasNextInt();
+            }
+
             int carnetCliente = scan.nextInt();
 
             if(comprobarCliente(carnetCliente) != null) cliente = comprobarCliente(carnetCliente);

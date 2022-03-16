@@ -14,6 +14,12 @@ public class VentaBoletos implements Servicio{
         );
         System.out.println("Cuántos boletos quiere?");
 
+        while (!scan.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            scan = new Scanner(System.in);
+            scan.hasNextInt();
+        }
+
         int boletosDeseados = scan.nextInt();
         while (exhibicionPelicula.verificarButacasDisponibles() < boletosDeseados){
             System.out.println("No hay " + boletosDeseados + " disponibles, introduzca otro numero");
