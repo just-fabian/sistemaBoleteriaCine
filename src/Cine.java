@@ -84,7 +84,7 @@ public class Cine {
         }
 
         if(exhibicionPelicula.verificarButacasDisponibles() > 0){
-            System.out.println(ventaBoletos.comprarBoletos(exhibicionPelicula, cliente));;
+            System.out.println(ventaBoletos.realizarOperacion(exhibicionPelicula, cliente));
         } else System.out.println("Ya no hay asientos disponibles");
     }
 

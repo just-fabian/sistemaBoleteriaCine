@@ -119,7 +119,6 @@ public class Peliculas {
         desdeMiCielo.aniadirExhibicionPelicula(exhDesdeMiCielo);
         peliculas.add(desdeMiCielo);
 
-
         return peliculas;
 
     }

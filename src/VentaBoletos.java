@@ -1,13 +1,9 @@
 import java.util.Scanner;
 
-public class VentaBoletos implements Servicio{
-    @Override
-    public void generarFactura() {
-        System.out.println("HOLA CLIENTE, nit , info de cliente, costo total");
-    }
+public class VentaBoletos implements Servicio {
 
     @Override
-    public String comprarBoletos(ExhibicionPelicula exhibicionPelicula, Cliente cliente) {
+    public String realizarOperacion(ExhibicionPelicula exhibicionPelicula, Cliente cliente) {
         Scanner scan = new Scanner(System.in);
         System.out.println(
                 "Hay " + exhibicionPelicula.verificarButacasDisponibles() + " butacas disponibles"
@@ -45,14 +41,9 @@ public class VentaBoletos implements Servicio{
         return boletos.toString();
     }
 
-    @Override
     public void generarPuntos(Cliente cliente, int boletosComprados) {
         cliente.sumarPuntos(boletosComprados);
         System.out.println("Sus puntos ahora son: " + cliente.getPuntos());
     }
 
-    @Override
-    public void generarTicket() {
-        System.out.println("Pelicula, hora/fecha, nrosala, duracion");
-    }
 }
