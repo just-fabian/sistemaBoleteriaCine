@@ -88,12 +88,12 @@ public class Peliculas {
         peliculas.add(nureyev);
 
         //A DOS METROS DE TI
-        ArrayList<String> actoresAdosMetrosDeTi = new ArrayList<>(List.of(
+        ArrayList<String> actoresADosMetrosDeTi = new ArrayList<>(List.of(
                 "Cole Sprouse", "Haley Lu", "Moises Arias", "Kimberly Herbert", "Gary Weeks"
         ));
         Pelicula aDosMetrosDeTi = new Pelicula(
                 "A Dos Metros De Ti", GenerosPeliculas.ROMANCE, "Justin Baldoni",
-                actoresAdosMetrosDeTi);
+                actoresADosMetrosDeTi);
 
         ExhibicionPelicula exhAdosMetrosDeTi = new ExhibicionPelicula(
                 aDosMetrosDeTi.getNombre(), "22:00", false
