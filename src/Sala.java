@@ -31,9 +31,7 @@ public class Sala {
     public String mostrarButacas(){
         StringBuilder butacas = new StringBuilder();
         for(Butaca butaca:listaDeButacas){
-            String estaDisponible = butaca.isDisponible() ? "Disponible" : "Ocupado";
-            butacas.append("\nBUTACA: ").append(butaca.getIdentificador()).
-                    append(" - ").append(estaDisponible);
+            butacas.append(butaca.mostrarInfoButaca());
         }
 
         return "\nButacas: " + butacas;

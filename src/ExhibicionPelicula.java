@@ -36,7 +36,7 @@ public class ExhibicionPelicula {
     public void comprarBoleto(String idButaca){
         for(Butaca butaca : sala.getListaDeButacas()){
             if(butaca.getIdentificador().equals(idButaca)){
-                butaca.ocuparButaca();
+                butaca.reservarButaca();
             }
         }
     }
