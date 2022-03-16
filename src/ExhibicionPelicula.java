@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class ExhibicionPelicula {
-    String horario;
+    String nombrePelicula, horario;
     Sala sala;
     boolean exhibicionEn3D;
 
-    public ExhibicionPelicula(String horario, boolean exhibicionEn3D){
+    public ExhibicionPelicula(String nombrePelicula, String horario, boolean exhibicionEn3D){
+        this.nombrePelicula = nombrePelicula;
         this.horario = horario;
         this.exhibicionEn3D = exhibicionEn3D;
     }
@@ -12,16 +15,42 @@ public class ExhibicionPelicula {
         this.sala = sala;
     }
 
-    public boolean comprarBoleto(String idButaca){
+    public int verificarButacasDisponibles(){
+        int butacasDisponibles = 0;
+        for (Butaca butaca:sala.getListaDeButacas()){
+            if(butaca.isDisponible()) butacasDisponibles++;
+        }
+        return butacasDisponibles;
+    }
+
+    public ArrayList<String> retornarButacasDisponibles(){
+        ArrayList<String> butacasDisponibles = new ArrayList<>();
+
+        for (Butaca butaca:sala.getListaDeButacas()){
+            if(butaca.isDisponible()) butacasDisponibles.add(butaca.getIdentificador());
+        }
+
+        return butacasDisponibles;
+    }
+
+    public void comprarBoleto(String idButaca){
         for(Butaca butaca : sala.getListaDeButacas()){
             if(butaca.getIdentificador().equals(idButaca)){
-                if(butaca.isDisponible()){
-                    butaca.ocuparButaca();
-                    return true;
-                } else return false;
+                butaca.ocuparButaca();
             }
         }
-        return false;
+    }
+
+    public String getNombrePelicula() {
+        return nombrePelicula;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public String getHorario() {
+        return horario;
     }
 
     public String mostrarButacas(){

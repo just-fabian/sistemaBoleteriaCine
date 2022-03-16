@@ -21,6 +21,14 @@ public class Pelicula {
         exhibicionesPelicula.add(exhibicionPelicula);
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public ArrayList<ExhibicionPelicula> getExhibicionesPelicula() {
+        return exhibicionesPelicula;
+    }
+
     public String mostrarExhibiciones(){
         StringBuilder exhibiciones = new StringBuilder();
         StringBuilder nombresActores = new StringBuilder();
@@ -34,7 +42,7 @@ public class Pelicula {
             nombresActores.append(nombreActor);
         }
 
-        return "PELICULA: " + nombre +
+        return "\n\nPELICULA: " + nombre +
                 "\nDirector: " + nombreDirector +
                 "\nActores: " + nombresActores + exhibiciones;
     }

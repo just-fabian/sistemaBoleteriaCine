@@ -14,7 +14,9 @@ public class Peliculas {
                 "The Batman", GenerosPeliculas.ACCION, "Matt Reeves", actoresTheBatman
         );
 
-        ExhibicionPelicula exhTheBatman2000 = new ExhibicionPelicula("20:00", true);
+        ExhibicionPelicula exhTheBatman2000 = new ExhibicionPelicula(
+                theBatman.getNombre(), "20:00", true
+        );
         exhTheBatman2000.setSala(salas.getSalaA());
 
         theBatman.aniadirExhibicionPelicula(exhTheBatman2000);

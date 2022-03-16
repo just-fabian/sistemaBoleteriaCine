@@ -6,8 +6,6 @@ public enum TipoEmpleado {
     VENDEDOR_ALIMENTOS("Vendedor de alimentos",4),
     CONTROLADOR("Controlador de la Proyeccion",5);
 
-
-
     private final String cargo;
 
     private TipoEmpleado(String cargo, int id) {

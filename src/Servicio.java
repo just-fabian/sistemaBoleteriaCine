@@ -1,9 +1,9 @@
 public interface Servicio {
     public void generarFactura();
 
-    public void comprarBoletos();
+    public String comprarBoletos(ExhibicionPelicula exhibicionPelicula, Cliente cliente);
 
-    public void generarPuntos();
+    public void generarPuntos(Cliente cliente, int boletosComprados);
 
     public void generarTicket();
 }
