@@ -5,8 +5,9 @@ public class Peliculas {
 
     static ArrayList<Pelicula> listarPeliculas(){
         ArrayList<Pelicula> peliculas = new ArrayList<>();
-        Salas salas = new Salas();
+        SalasCine salas = new SalasCine();
 
+        //BATMAN
         ArrayList<String> actoresTheBatman = new ArrayList<>(List.of(
                 "Robert Pattinson", "Zoe Kravitz", "Paul Dano", "Colin Farrel"
         ));
