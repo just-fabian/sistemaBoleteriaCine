@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class ExhibicionPelicula {
     String nombrePelicula, horario;
     Sala sala;
-    boolean exhibicionEn3D;
+    boolean exhibicionEn3D, esPeliculaAnimada;
 
-    public ExhibicionPelicula(String nombrePelicula, String horario, boolean exhibicionEn3D){
+    public ExhibicionPelicula(
+            String nombrePelicula, String horario, boolean exhibicionEn3D, boolean esPeliculaAnimada
+    ){
         this.nombrePelicula = nombrePelicula;
         this.horario = horario;
         this.exhibicionEn3D = exhibicionEn3D;
+        this.esPeliculaAnimada = esPeliculaAnimada;
     }
 
     public void setSala(Sala sala) {
@@ -55,6 +58,14 @@ public class ExhibicionPelicula {
 
     public String mostrarButacas(){
         return sala.mostrarButacas();
+    }
+
+    public boolean isEsPeliculaAnimada() {
+        return esPeliculaAnimada;
+    }
+
+    public boolean isExhibicionEn3D() {
+        return exhibicionEn3D;
     }
 
     public String mostrarExhibicion(){

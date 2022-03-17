@@ -16,7 +16,7 @@ public class Peliculas {
         );
 
         ExhibicionPelicula exhTheBatman2000 = new ExhibicionPelicula(
-                theBatman.getNombre(), "20:00", true
+                theBatman.getNombre(), "20:00", true, theBatman.esPeliculaAnimada()
         );
         exhTheBatman2000.setSala(salas.getSalaA());
 
@@ -28,11 +28,13 @@ public class Peliculas {
                 "Ryan Reynolds", "Mark Ruffalo", "Jennifer Garner", "Walker Scobell"
         ));
         Pelicula elProyectoAdam = new Pelicula(
-                "El proyecto Adam", GenerosPeliculas.COMEDIA, "Shawn Levy", actoresElProyectoAdam
+                "El proyecto Adam",
+                GenerosPeliculas.COMEDIA, "Shawn Levy", actoresElProyectoAdam
         );
 
         ExhibicionPelicula exhElProyectoAdam = new ExhibicionPelicula(
-                elProyectoAdam.getNombre(), "20:00", false
+                elProyectoAdam.getNombre(), "20:00", false,
+                elProyectoAdam.esPeliculaAnimada()
         );
         exhElProyectoAdam.setSala(salas.getSalaB());
 
@@ -43,17 +45,17 @@ public class Peliculas {
         ArrayList<String> actoresChernobil = new ArrayList<>(List.of(
                 "Danila Kozlovski", "Okasana Akinshina", "Igor Chernevich", "Filipp Avdeev"
         ));
-        Pelicula chernovil = new Pelicula(
+        Pelicula chernobil = new Pelicula(
                 "Chernobil", GenerosPeliculas.DRAMA, "Danila Kozlovski", actoresChernobil
         );
 
-        ExhibicionPelicula exhChernovil = new ExhibicionPelicula(
-                chernovil.getNombre(), "20:00", true
+        ExhibicionPelicula exhChernobil = new ExhibicionPelicula(
+                chernobil.getNombre(), "20:00", true, chernobil.esPeliculaAnimada()
         );
-        exhChernovil.setSala(salas.getSalaC());
+        exhChernobil.setSala(salas.getSalaC());
 
-        chernovil.aniadirExhibicionPelicula(exhChernovil);
-        peliculas.add(chernovil);
+        chernobil.aniadirExhibicionPelicula(exhChernobil);
+        peliculas.add(chernobil);
 
         //EL PRIVILEGIO
         ArrayList<String> actoresElPrivilegio = new ArrayList<>(List.of(
@@ -64,7 +66,7 @@ public class Peliculas {
         );
 
         ExhibicionPelicula exhElPrivilegio = new ExhibicionPelicula(
-                elPrivilegio.getNombre(), "16:30", true
+                elPrivilegio.getNombre(), "16:30", true, elPrivilegio.esPeliculaAnimada()
         );
         exhElPrivilegio.setSala(salas.getSalaD());
 
@@ -80,7 +82,7 @@ public class Peliculas {
         );
 
         ExhibicionPelicula exhNureyev = new ExhibicionPelicula(
-                nureyev.getNombre(), "15:45", false
+                nureyev.getNombre(), "15:45", false, nureyev.esPeliculaAnimada()
         );
         exhNureyev.setSala(salas.getSalaE());
 
@@ -96,7 +98,7 @@ public class Peliculas {
                 actoresADosMetrosDeTi);
 
         ExhibicionPelicula exhAdosMetrosDeTi = new ExhibicionPelicula(
-                aDosMetrosDeTi.getNombre(), "22:00", false
+                aDosMetrosDeTi.getNombre(), "22:00", false, aDosMetrosDeTi.esPeliculaAnimada()
         );
         exhAdosMetrosDeTi.setSala(salas.getSalaF());
 
@@ -112,7 +114,7 @@ public class Peliculas {
                 actoresDesdeMiCielo);
 
         ExhibicionPelicula exhDesdeMiCielo= new ExhibicionPelicula(
-                desdeMiCielo.getNombre(), "22:00", true
+                desdeMiCielo.getNombre(), "22:00", true, desdeMiCielo.esPeliculaAnimada()
         );
         exhDesdeMiCielo.setSala(salas.getSalaG());
 

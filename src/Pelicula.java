@@ -29,6 +29,10 @@ public class Pelicula {
         return exhibicionesPelicula;
     }
 
+    public boolean esPeliculaAnimada(){
+        return genero == GenerosPeliculas.ANIMACION;
+    }
+
     public String mostrarExhibiciones(){
         StringBuilder exhibiciones = new StringBuilder();
         StringBuilder nombresActores = new StringBuilder();

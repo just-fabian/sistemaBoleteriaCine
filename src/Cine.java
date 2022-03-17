@@ -41,7 +41,7 @@ public class Cine {
 
         System.out.println("Introduzca su nombre: ");
         String nombreCliente = scan.next();
-        System.out.println("Introduzca su fecha de nacimiento: ");
+        System.out.println("Introduzca su fecha de nacimiento en formato AAAA-MM-DD: ");
         String fechaNacimiento = scan.next();
         System.out.println("Introduzca su telefono: ");
         int telefono = scan.nextInt();
@@ -56,20 +56,41 @@ public class Cine {
 
     public void venderBoleto(ExhibicionPelicula exhibicionPelicula){
         Scanner scan = new Scanner(System.in);
+//        System.out.println(
+//                "Desea introducir su carnet para generar puntos por compra de boletos y " +
+//                        "obtener descuentos en la compra? (S/N): "
+//        );
+//        String deseaIntroducirCarnet = scan.next().toLowerCase();
+//        while (!deseaIntroducirCarnet.equals("s") && !deseaIntroducirCarnet.equals("n")){
+//            System.out.println("Introduzca un valor valido: ");
+//            deseaIntroducirCarnet = scan.next().toLowerCase();
+//        }
+
         System.out.println(
-                "Desea introducir su carnet para generar puntos por compra de boletos y " +
-                        "generar la factura (S/N): "
+                "Hay " + exhibicionPelicula.verificarButacasDisponibles() + " butacas disponibles"
         );
-        String deseaIntroducirCarnet = scan.next().toLowerCase();
-        while (!deseaIntroducirCarnet.equals("s") && !deseaIntroducirCarnet.equals("n")){
-            System.out.println("Introduzca un valor valido: ");
-            deseaIntroducirCarnet = scan.next().toLowerCase();
+        System.out.println("Cuántos boletos quiere?");
+
+        while (!scan.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            scan = new Scanner(System.in);
+            scan.hasNextInt();
         }
 
-        Cliente cliente = null;
+        int boletosDeseados = scan.nextInt();
+        while (exhibicionPelicula.verificarButacasDisponibles() < boletosDeseados){
+            System.out.println("No hay " + boletosDeseados + " disponibles, introduzca otro numero");
+            boletosDeseados = scan.nextInt();
+        }
 
-        if(deseaIntroducirCarnet.equals("s")){
-            System.out.println("Introduzca su carnet");
+        ArrayList<Cliente> clientesCompra = new ArrayList<>();
+
+//        if(deseaIntroducirCarnet.equals("s")){
+//
+//        }
+
+        for (int i = 1; i <= boletosDeseados; i++){
+            System.out.println("Introduzca el carnet del clienet " + i);
 
             while (!scan.hasNextInt()) {
                 System.out.println("Introduce un valor correcto: ");
@@ -79,12 +100,12 @@ public class Cine {
 
             int carnetCliente = scan.nextInt();
 
-            if(comprobarCliente(carnetCliente) != null) cliente = comprobarCliente(carnetCliente);
-            else cliente = registrarCliente(carnetCliente);
+            if(comprobarCliente(carnetCliente) != null) clientesCompra.add(comprobarCliente(carnetCliente));
+            else clientesCompra.add(registrarCliente(carnetCliente));
         }
 
         if(exhibicionPelicula.verificarButacasDisponibles() > 0){
-            System.out.println(ventaBoletos.realizarOperacion(exhibicionPelicula, cliente));
+            ventaBoletos.realizarOperacion(exhibicionPelicula, clientesCompra, boletosDeseados);
         } else System.out.println("Ya no hay asientos disponibles");
     }
 
@@ -108,6 +129,6 @@ public class Cine {
         ExhibicionPelicula exhibicion = cinePOOI.getPeliculas().get(0).getExhibicionesPelicula().get(0);
         cinePOOI.venderBoleto(exhibicion);
 
-        System.out.println(cinePOOI.getPeliculas().get(0).mostrarExhibiciones());
+//        System.out.println(cinePOOI.getPeliculas().get(0).mostrarExhibiciones());
     }
 }
