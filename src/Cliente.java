@@ -32,9 +32,6 @@ public class Cliente extends Persona{
     }
 
     public int getAniosDeEdad(){
-        LocalDate d1 = LocalDate.parse("2020-05-06", DateTimeFormatter.ISO_LOCAL_DATE);
-        LocalDate d2 = LocalDate.parse("2020-05-30", DateTimeFormatter.ISO_LOCAL_DATE);
-
         LocalDate hoy = LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate fechaDeNacimiento = LocalDate.parse(getFechaNacimiento(), DateTimeFormatter.ISO_LOCAL_DATE);
 
