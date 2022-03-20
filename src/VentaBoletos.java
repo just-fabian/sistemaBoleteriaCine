@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,29 +11,28 @@ public class VentaBoletos implements Servicio{
     public void realizarOperacion(ExhibicionPelicula exhibicionPelicula) {
         int butacasDisponibles = exhibicionPelicula.verificarButacasDisponibles();
 
-        if(butacasDisponibles <= 0){
-            System.out.println("Ya no hay butacas disponibles para esta función");
-            return;
-        }
-
-        System.out.println("Hay " + butacasDisponibles + " butacas disponibles");
-        System.out.println("Cuántos boletos quiere?");
-
+        System.out.println("Hay " + butacasDisponibles + " butacas disponibles\nCuántos boletos quiere?");
         int boletosDeseados = pedirValorInt(1, butacasDisponibles);
 
         StringBuilder boletos = new StringBuilder("\nBOLETOS: ");
+        ArrayList<String> asientos = new ArrayList<>();
+        ArrayList<Integer> tipoBoletos = new ArrayList<>();
 
 
         for(int i = 0; i < boletosDeseados; i++){
-            System.out.println("Introduzca el asiento");
-            String asiento = scan.next().toUpperCase();
+            System.out.println("Introduzca el tipo de boleto");
+            System.out.println("1. Adulto");
+            System.out.println("2. Adulto mayor (mayor a 60 años)");
+            System.out.println("3. Niño (menor a 10 años)");
 
-            while (!exhibicionPelicula.retornarButacasDisponibles().contains(asiento)){
-                System.out.println("Introduzca un asiento disponible");
-                asiento = scan.next().toUpperCase();
-            }
+            int tipoBoleto = pedirValorInt(1, 3);
+            tipoBoletos.add(tipoBoleto);
 
-            exhibicionPelicula.comprarBoleto(asiento);
+            String asiento = introducirAsiento(exhibicionPelicula);
+            asientos.add(asiento);
+
+            exhibicionPelicula.comprarBoleto(asiento, false);
+
             boletos.append("\n\nPELICULA: ").append(exhibicionPelicula.getNombrePelicula())
                     .append("\nHORA: ").append(exhibicionPelicula.getHorario())
                     .append("\nSALA: " ).append(exhibicionPelicula.getSala().getLetraSala())
@@ -40,46 +40,62 @@ public class VentaBoletos implements Servicio{
         }
 
         int precioTotal = 0;
-        String diaSemana = diaSemana();
         ArrayList<Integer> descuentos = new ArrayList<>();
-        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Integer> precioBoletos = new ArrayList<>();
         StringBuilder razonesDescuentos = new StringBuilder();
+        Cliente cliente = Cine.manejoClientes();
 
         for(int i = 0; i < boletosDeseados; i++){
-            Cliente cliente = Cine.manejoClientes();
-            clientes.add(cliente);
+            ArrayList<String> descuentosYRazones  = obtenerDescuento(tipoBoletos.get(i), exhibicionPelicula);
 
-            ArrayList<String> descuentosYRazones  = obtenerDescuento(cliente, exhibicionPelicula, diaSemana);
             int valorDescuento = Integer.parseInt(descuentosYRazones.get(0));
             String razonDescuento = descuentosYRazones.get(1);
             descuentos.add(valorDescuento);
             razonesDescuentos.append(razonDescuento);
-            precioTotal = precioTotal + obtenerPrecioBoleto(valorDescuento, exhibicionPelicula);
+
+            int precioBoleto = obtenerPrecioBoleto(valorDescuento, exhibicionPelicula);
+            precioBoletos.add(precioBoleto);
+            precioTotal = precioTotal + precioBoleto;
         }
 
-        System.out.println("Hoy es " + diaSemana);
         System.out.println(razonesDescuentos);
 
         Pagar pagar = new Pagar();
         pagar.realizarOperacion(precioTotal);
 
-        for(int i = 0; i < clientes.size(); i++){
-            generarPuntos(clientes.get(i), descuentos.get(i));
+        for(String asiento : asientos){
+            exhibicionPelicula.comprarBoleto(asiento, true);
         }
 
-//      OCUPAR BUTACAS
-
+        generarPuntos(cliente, descuentos);
         System.out.println(boletos);
-
+        System.out.println(Factura.generarFactura(tipoBoletos, precioBoletos, precioTotal));
     }
 
-    public void generarPuntos(Cliente cliente, int descuento) {
+    public String introducirAsiento(ExhibicionPelicula exhibicionPelicula){
+        System.out.println("Introduzca un asiento");
+        String asiento = scan.next().toUpperCase();
+
+        while (!exhibicionPelicula.retornarButacasDisponibles().contains(asiento)){
+            System.out.println("Introduzca un asiento disponible");
+            asiento = scan.next().toUpperCase();
+        }
+
+        return asiento;
+    }
+
+    public void generarPuntos(Cliente cliente, ArrayList<Integer> descuentos) {
         int puntosGanados = 50;
+        int puntosGanadosTotales = 0;
 
-        if(descuento != 0)  puntosGanados = puntosGanados - ((descuento * puntosGanados) / 100);
+        for (Integer descuento:descuentos){
+            if(descuento != 0)  puntosGanados = puntosGanados - ((descuento * puntosGanados) / 100);
+            cliente.sumarPuntos(puntosGanados);
+            puntosGanadosTotales = puntosGanadosTotales + puntosGanados;
+        }
 
-        cliente.sumarPuntos(puntosGanados);
-        System.out.println(cliente.getNombre() + ", sus puntos ahora son: " + cliente.getPuntos());
+        System.out.println(cliente.getNombre() + ", obtuvo" + puntosGanadosTotales + " puntos, " +
+                "sus puntos ahora son: " + cliente.getPuntos());
     }
 
     public int obtenerPrecioBoleto(int descuento, ExhibicionPelicula exhibicionPelicula){
@@ -89,32 +105,20 @@ public class VentaBoletos implements Servicio{
         return precio;
     }
 
-    String diaSemana() {
-        switch (LocalDate.now().getDayOfWeek()) {
-            case MONDAY: return "Lunes";
-            case TUESDAY: return "Martes";
-            case WEDNESDAY: return "Miércoles";
-            case THURSDAY: return "Jueves";
-            case FRIDAY: return "Viernes";
-            case SATURDAY: return "Sábado";
-            default: return "Domingo";
-        }
-    }
-
     ArrayList<String> obtenerDescuento(
-            Cliente cliente, ExhibicionPelicula exhibicionPelicula, String diaSemana
+            int tipoBoleto, ExhibicionPelicula exhibicionPelicula
     ){
-        if(diaSemana.equals("Miércoles")){
+        if(LocalDate.now().getDayOfWeek() == DayOfWeek.WEDNESDAY){
             return new ArrayList<>(List.of(
                     "50", "\nObtuvo un descuento en un boleto del 50% por ser miércoles"
             ));
         }
-        else if(cliente.getAniosDeEdad() > 60){
+        else if(tipoBoleto == 2){
             return new ArrayList<>(List.of(
                     "50", "\nObtuvo un descuento en un boleto del 50% por ser adulto mayor"
             ));
         }
-        else if(cliente.getAniosDeEdad() < 10 && exhibicionPelicula.esPeliculaAnimada){
+        else if(tipoBoleto == 3 && exhibicionPelicula.esPeliculaAnimada){
             return new ArrayList<>(List.of(
                     "15",
                     "\nObtuvo un descuento en un boleto del 15% por ser niño y " +

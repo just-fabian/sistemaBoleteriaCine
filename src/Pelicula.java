@@ -33,12 +33,26 @@ public class Pelicula {
         return genero == GenerosPeliculas.ANIMACION;
     }
 
-    public String mostrarExhibiciones(){
-        StringBuilder exhibiciones = new StringBuilder();
+    public String mostrarInfoPelicula(){
+        StringBuilder nombresActores = new StringBuilder();
+
+        for(String nombreActor:nombreActores){
+            if(nombreActores.indexOf(nombreActor) != 0) nombresActores.append(", ");
+            nombresActores.append(nombreActor);
+        }
+
+        return "\n\nPELICULA: " + nombre +
+                "\nDirector: " + nombreDirector +
+                "\nActores: " + nombresActores;
+    }
+
+    public String mostrarExhibicionesConButacasDisponibles(){
+        StringBuilder exhibiciones = new StringBuilder("\nExhibiciones con Butacas Disponibles: ");
         StringBuilder nombresActores = new StringBuilder();
 
         for(ExhibicionPelicula exhibicionPelicula : exhibicionesPelicula){
-            exhibiciones.append(exhibicionPelicula.mostrarExhibicion());
+            int butacasDisponibles = exhibicionPelicula.verificarButacasDisponibles();
+            if(butacasDisponibles > 0) exhibiciones.append(exhibicionPelicula.mostrarExhibicion());
         }
 
         for(String nombreActor:nombreActores){

@@ -14,6 +14,10 @@ public class Butaca {
         estado = "Reservado";
     }
 
+    public void ocuparButaca(){
+        estado = "Ocupado";
+    }
+
     public boolean isDisponible() {
         return estado.equalsIgnoreCase("disponible");
     }

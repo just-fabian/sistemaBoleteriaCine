@@ -91,9 +91,47 @@ public class Cine {
             cinePOOI.aniadirPelicula(pelicula);
         }
 
-        System.out.println(cinePOOI.getPeliculas().get(0).mostrarExhibiciones());
+        ArrayList<String> nombresPeliculas = new ArrayList<>();
 
-        ExhibicionPelicula exhibicion = cinePOOI.getPeliculas().get(0).getExhibicionesPelicula().get(0);
-        cinePOOI.venderBoleto(exhibicion);
+        for (Pelicula pelicula: cinePOOI.peliculas){
+            System.out.println(pelicula.mostrarInfoPelicula());
+            nombresPeliculas.add(pelicula.getNombre().toLowerCase());
+        }
+
+        System.out.println("¿Qué película desea ver?");
+        String nombrePelicula = scan.nextLine().toLowerCase();
+
+        while(!nombresPeliculas.contains(nombrePelicula)){
+            System.out.println("Introduzca un nombre de una película válido");
+            nombrePelicula = scan.nextLine().toLowerCase();
+        }
+
+        for (Pelicula pelicula: cinePOOI.peliculas){
+            if(pelicula.getNombre().equalsIgnoreCase(nombrePelicula)){
+                System.out.println(pelicula.mostrarExhibicionesConButacasDisponibles());
+
+                ArrayList<String> horarios = new ArrayList<>();
+
+                for (ExhibicionPelicula exhibicionPelicula: pelicula.getExhibicionesPelicula()){
+                    horarios.add(exhibicionPelicula.getHorario());
+                }
+
+                System.out.println("Introduzca el horario de exhibición que desea comprar");
+                String horario = scan.nextLine();
+
+                while(!horarios.contains(horario)){
+                    System.out.println("Introduzca un horario válido");
+                    horario = scan.nextLine();
+                }
+
+                for (ExhibicionPelicula exhibicionPelicula: pelicula.getExhibicionesPelicula()){
+                    if(horario.equalsIgnoreCase(exhibicionPelicula.getHorario())){
+                        exhibicionPelicula.mostrarButacas();
+                        cinePOOI.venderBoleto(exhibicionPelicula);
+                    }
+                }
+
+            }
+        }
     }
 }

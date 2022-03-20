@@ -36,10 +36,11 @@ public class ExhibicionPelicula {
         return butacasDisponibles;
     }
 
-    public void comprarBoleto(String idButaca){
+    public void comprarBoleto(String idButaca, boolean pagado){
         for(Butaca butaca : sala.getListaDeButacas()){
             if(butaca.getIdentificador().equals(idButaca)){
-                butaca.reservarButaca();
+                if(pagado) butaca.ocuparButaca();
+                else butaca.reservarButaca();
             }
         }
     }
@@ -71,6 +72,6 @@ public class ExhibicionPelicula {
     public String mostrarExhibicion(){
         String exhibicion = exhibicionEn3D ? "3D" : "2D";
         return "\n------\nHORARIO: " + horario + "\nSala: Sala-" + sala.getLetraSala() +
-                "\nEN: " + exhibicion + mostrarButacas();
+                "\nEN: " + exhibicion;
     }
 }
