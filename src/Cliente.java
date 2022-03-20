@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Cliente extends Persona{
 
     private String correo;
@@ -13,8 +17,8 @@ public class Cliente extends Persona{
 //        this.setCorreo(correo);
 //    }
 
-    public void sumarPuntos(int boletosComprados){
-        puntos = puntos + (boletosComprados * 50);
+    public void sumarPuntos(int puntosSumados){
+        puntos = puntos + puntosSumados;
     }
 
     public int getPuntos() {
@@ -25,5 +29,13 @@ public class Cliente extends Persona{
         if(!correo.equals("")) {
             this.correo = correo;
         }
+    }
+
+    public int getAniosDeEdad(){
+        LocalDate hoy = LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate fechaDeNacimiento = LocalDate.parse(getFechaNacimiento(), DateTimeFormatter.ISO_LOCAL_DATE);
+
+        Period period = Period.between(hoy, fechaDeNacimiento);
+        return Math.abs(period.getYears());
     }
 }

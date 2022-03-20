@@ -1,25 +1,36 @@
 public class Butaca {
     String fila;
     int columna;
-    String identificador;
-    boolean disponible;
+    String identificador, estado;
 
     public Butaca(String fila, int columna){
         this.fila = fila;
         this.columna = columna;
         identificador = fila + columna;
-        disponible = true;
+        estado = "Disponible";
+    }
+
+    public void reservarButaca(){
+        estado = "Reservado";
     }
 
     public void ocuparButaca(){
-        disponible = false;
+        estado = "Ocupado";
     }
 
     public boolean isDisponible() {
-        return disponible;
+        return estado.equalsIgnoreCase("disponible");
     }
 
     public String getIdentificador() {
         return identificador;
+    }
+
+    public String mostrarInfoButaca(){
+        return "\nBUTACA: " + identificador + "- ESTADO: " + estado;
+    }
+
+    public String getEstado() {
+        return estado;
     }
 }
