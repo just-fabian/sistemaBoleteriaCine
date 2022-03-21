@@ -4,12 +4,14 @@ public class Butaca {
     String fila;
     int columna;
     String identificador, estado;
+    boolean disponibleParaUso;
 
-    public Butaca(String fila, int columna){
+    public Butaca(String fila, int columna, boolean disponibleParaUso){
         this.fila = fila;
         this.columna = columna;
         identificador = fila + columna;
-        estado = "Disponible";
+        this.disponibleParaUso = disponibleParaUso;
+        estado = disponibleParaUso ? "Disponible" : "No disponible";
     }
 
     public void reservarButaca(){

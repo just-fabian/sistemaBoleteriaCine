@@ -10,7 +10,7 @@ public class Butacas {
 
         for (String fila : filas) {
             for (int columna = 1; columna <= 10; columna++) {
-                Butaca butaca = new Butaca(fila, columna);
+                Butaca butaca = new Butaca(fila, columna, true);
                 butacas.add(butaca);
             }
         }
