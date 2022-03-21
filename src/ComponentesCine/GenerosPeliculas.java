@@ -1,0 +1,5 @@
+package ComponentesCine;
+
+public enum GenerosPeliculas {
+    ACCION, ANIMACION, CIENCIA_FICCION, COMEDIA, DRAMA, FANTASIA, MUSICAL, ROMANCE, SUSPENSO, TERROR, DOCUMENTAL
+}
