@@ -2,6 +2,7 @@ package ComponentesCine;
 
 import Servicios.ExhibicionPelicula;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Pelicula {
@@ -10,15 +11,17 @@ public class Pelicula {
     ArrayList<ExhibicionPelicula> exhibicionesPelicula;
     ArrayList<String> nombreActores;
     String nombreDirector;
+    Image image;
 
     public Pelicula(
-            String nombre, GenerosPeliculas genero, String nombreDirector, ArrayList<String> nombreActores
+            String nombre, GenerosPeliculas genero, String nombreDirector, ArrayList<String> nombreActores, Image image
     ){
         this.nombre = nombre;
         this.genero = genero;
         this.nombreDirector = nombreDirector;
         this.nombreActores = nombreActores;
         exhibicionesPelicula = new ArrayList<>();
+        this.image = image;
     }
 
     public void aniadirExhibicionPelicula(ExhibicionPelicula exhibicionPelicula){
@@ -27,6 +30,10 @@ public class Pelicula {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     public ArrayList<ExhibicionPelicula> getExhibicionesPelicula() {

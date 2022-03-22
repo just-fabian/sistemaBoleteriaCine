@@ -1,6 +1,7 @@
 package ComponentesCine;
 
 import Servicios.ExhibicionPelicula;
+import utils.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,15 @@ public class Peliculas {
     static ArrayList<Pelicula> listarPeliculas(){
         ArrayList<Pelicula> peliculas = new ArrayList<>();
         SalasCine salas = new SalasCine();
+        Constantes.init();
 
         //BATMAN
         ArrayList<String> actoresTheBatman = new ArrayList<>(List.of(
                 "Robert Pattinson", "Zoe Kravitz", "Paul Dano", "Colin Farrel"
         ));
         Pelicula theBatman = new Pelicula(
-                "The Batman", GenerosPeliculas.ACCION, "Matt Reeves", actoresTheBatman
-        );
+                "The Batman", GenerosPeliculas.ACCION, "Matt Reeves",
+                actoresTheBatman, Constantes.batt_img);
 
         ExhibicionPelicula exhTheBatman2000 = new ExhibicionPelicula(
                 theBatman.getNombre(), "20:00", true, theBatman.esPeliculaAnimada()
@@ -33,8 +35,8 @@ public class Peliculas {
         ));
         Pelicula elProyectoAdam = new Pelicula(
                 "El proyecto Adam",
-                GenerosPeliculas.COMEDIA, "Shawn Levy", actoresElProyectoAdam
-        );
+                GenerosPeliculas.COMEDIA, "Shawn Levy",
+                actoresElProyectoAdam, Constantes.Adamimg);
 
         ExhibicionPelicula exhElProyectoAdam = new ExhibicionPelicula(
                 elProyectoAdam.getNombre(), "20:00", false,
@@ -50,7 +52,8 @@ public class Peliculas {
                 "Danila Kozlovski", "Okasana Akinshina", "Igor Chernevich", "Filipp Avdeev"
         ));
         Pelicula chernobil = new Pelicula(
-                "Chernobil", GenerosPeliculas.DRAMA, "Danila Kozlovski", actoresChernobil
+                "Chernobil", GenerosPeliculas.DRAMA, "Danila Kozlovski",
+                actoresChernobil, Constantes.Chernobilimg
         );
 
         ExhibicionPelicula exhChernobil = new ExhibicionPelicula(
@@ -66,7 +69,8 @@ public class Peliculas {
                 "Max Schimmelpfennig", "Lee van", "Tijan Marei", "Horst Janson", "Maurice Lattke"
         ));
         Pelicula elPrivilegio = new Pelicula(
-                "El Privilegio", GenerosPeliculas.TERROR, "Katharina Schode", actoresElPrivilegio
+                "El Privilegio", GenerosPeliculas.TERROR, "Katharina Schode",
+                actoresElPrivilegio, Constantes.proyectimg
         );
 
         ExhibicionPelicula exhElPrivilegio = new ExhibicionPelicula(
@@ -82,7 +86,8 @@ public class Peliculas {
                 "Rudolf Nureyev"
         ));
         Pelicula nureyev = new Pelicula(
-                "Nureyev", GenerosPeliculas.DOCUMENTAL, "David Morris", actoresNureyev
+                "Nureyev", GenerosPeliculas.DOCUMENTAL, "David Morris",
+                actoresNureyev, Constantes.nervyimg
         );
 
         ExhibicionPelicula exhNureyev = new ExhibicionPelicula(
@@ -99,7 +104,7 @@ public class Peliculas {
         ));
         Pelicula aDosMetrosDeTi = new Pelicula(
                 "A Dos Metros De Ti", GenerosPeliculas.ROMANCE, "Justin Baldoni",
-                actoresADosMetrosDeTi);
+                actoresADosMetrosDeTi, Constantes.batt_img);
 
         ExhibicionPelicula exhAdosMetrosDeTi = new ExhibicionPelicula(
                 aDosMetrosDeTi.getNombre(), "22:00", false, aDosMetrosDeTi.esPeliculaAnimada()
@@ -115,7 +120,7 @@ public class Peliculas {
         ));
         Pelicula desdeMiCielo = new Pelicula(
                 "Desde Mi Cielo", GenerosPeliculas.FANTASIA, "Peter Jackson",
-                actoresDesdeMiCielo);
+                actoresDesdeMiCielo, Constantes.batt_img);
 
         ExhibicionPelicula exhDesdeMiCielo= new ExhibicionPelicula(
                 desdeMiCielo.getNombre(), "22:00", true, desdeMiCielo.esPeliculaAnimada()

@@ -15,7 +15,7 @@ public class Cine {
     ArrayList<Sala> salas;
     static ArrayList<Cliente> clientes;
     ArrayList<Empleado> empleados;
-    ArrayList<Pelicula> peliculas;
+    public ArrayList<Pelicula> peliculas;
     VentaBoletos ventaBoletos;
     static Scanner scan = new Scanner(System.in);
 
