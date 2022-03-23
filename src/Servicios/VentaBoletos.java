@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 import Personas.*;
 import Cine.Cine;
+import utils.Verificacion;
 
 public class VentaBoletos implements Servicio {
     Scanner scan = new Scanner(System.in);
 
-    //    @Override
     public void realizarOperacion(ExhibicionPelicula exhibicionPelicula) {
         int butacasDisponibles = exhibicionPelicula.verificarButacasDisponibles();
 
@@ -134,11 +134,7 @@ public class VentaBoletos implements Servicio {
 
     @Override
     public int pedirValorInt(int rangoMenor, int rangoMayor) {
-        while (!scan.hasNextInt()) {
-            System.out.println("Introduce un valor correcto: ");
-            scan = new Scanner(System.in);
-            scan.hasNextInt();
-        }
+        Verificacion.intVerificar(scan);
 
         int boletosDeseados = scan.nextInt();
         while (boletosDeseados < rangoMenor || boletosDeseados > rangoMayor){

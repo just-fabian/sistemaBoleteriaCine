@@ -1,4 +1,5 @@
 package Servicios;
+import utils.Verificacion;
 
 import java.util.Scanner;
 
@@ -16,15 +17,15 @@ public class Pagar implements Servicio {
         System.out.println("3. Código QR");
 
         int valorIntroducido = pedirValorInt(1, 3);
+        switch (valorIntroducido){
+            case 1:
+                pedirValoresTarjeta();
+        }
     }
 
     @Override
     public int pedirValorInt(int rangoMenor, int rangoMayor) {
-        while (!scan.hasNextInt()) {
-            System.out.println("Introduce un valor correcto: ");
-            scan = new Scanner(System.in);
-            scan.hasNextInt();
-        }
+        Verificacion.intVerificar(scan);
 
         int valorIntroducido = scan.nextInt();
         while (valorIntroducido < rangoMenor || valorIntroducido > rangoMayor){
@@ -33,5 +34,10 @@ public class Pagar implements Servicio {
         }
 
         return valorIntroducido;
+    }
+
+    void pedirValoresTarjeta(){
+        int numeroTarjeta = pedirValorInt(0, 999999999);
+
     }
 }

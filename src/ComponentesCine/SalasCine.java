@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalasCine {
-    Sala salaA;
-    Sala salaB;
-    Sala salaC;
-    Sala salaD;
-    Sala salaE;
-    Sala salaF;
-    Sala salaG;
+    Sala salaA, salaB, salaC, salaD, salaE, salaF, salaG;
     ArrayList<Sala> salasCine;
 
     public SalasCine(){
