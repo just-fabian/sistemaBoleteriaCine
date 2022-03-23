@@ -143,7 +143,7 @@ public class Cine {
 
                 for (ExhibicionPelicula exhibicionPelicula: pelicula.getExhibicionesPelicula()){
                     if(horario.equalsIgnoreCase(exhibicionPelicula.getHorario())){
-                        exhibicionPelicula.mostrarButacas();
+                        System.out.println(exhibicionPelicula.mostrarButacas());
                         cinePOOI.venderBoleto(exhibicionPelicula);
                     }
                 }

@@ -38,6 +38,6 @@ public class Sala {
             butacas.append(butaca.mostrarInfoButaca());
         }
 
-        return "\nComponentesCine.Butacas: " + butacas;
+        return "\nButacas: " + butacas;
     }
 }

@@ -1,12 +1,11 @@
 package Servicios;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import Personas.*;
 import Cine.Cine;
+import Servicios.Pagos.Pagar;
 import utils.Verificacion;
 
 public class VentaBoletos implements Servicio {
@@ -112,7 +111,10 @@ public class VentaBoletos implements Servicio {
     ArrayList<String> obtenerDescuento(
             int tipoBoleto, ExhibicionPelicula exhibicionPelicula
     ){
-        if(LocalDate.now().getDayOfWeek() == DayOfWeek.WEDNESDAY){
+        Calendar calendar = Calendar.getInstance();
+        int diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
+
+        if(diaSemana == calendar.WEDNESDAY){
             return new ArrayList<>(List.of(
                     "50", "\nObtuvo un descuento en un boleto del 50% por ser miércoles"
             ));
@@ -122,7 +124,7 @@ public class VentaBoletos implements Servicio {
                     "50", "\nObtuvo un descuento en un boleto del 50% por ser adulto mayor"
             ));
         }
-        else if(tipoBoleto == 3 && exhibicionPelicula.esPeliculaAnimada){
+        else if(tipoBoleto == 3 && exhibicionPelicula.isEsPeliculaAnimada()){
             return new ArrayList<>(List.of(
                     "15",
                     "\nObtuvo un descuento en un boleto del 15% por ser niño y " +
@@ -134,7 +136,12 @@ public class VentaBoletos implements Servicio {
 
     @Override
     public int pedirValorInt(int rangoMenor, int rangoMayor) {
-        Verificacion.intVerificar(scan);
+//        Verificacion.intVerificar(scan);
+        while (!scan.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            scan = new Scanner(System.in);
+            scan.hasNextInt();
+        }
 
         int boletosDeseados = scan.nextInt();
         while (boletosDeseados < rangoMenor || boletosDeseados > rangoMayor){

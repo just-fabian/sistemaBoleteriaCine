@@ -76,7 +76,7 @@ public class ExhibicionPelicula {
 
     public String mostrarExhibicion(){
         String exhibicion = exhibicionEn3D ? "3D" : "2D";
-        return "\n------\nHORARIO: " + horario + "\nComponentesCine.Sala: ComponentesCine.Sala-" + sala.getLetraSala() +
-                "\nEN: " + exhibicion;
+        return "\n------\nHORARIO: " + horario + "\nSala: Sala-" +
+                sala.getLetraSala() + "\nEN: " + exhibicion;
     }
 }

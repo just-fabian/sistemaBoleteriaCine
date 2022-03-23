@@ -51,7 +51,9 @@ public class Pelicula {
     }
 
     public String mostrarExhibicionesConButacasDisponibles(){
-        StringBuilder exhibiciones = new StringBuilder("\nExhibiciones con ComponentesCine.Butacas Disponibles: ");
+        StringBuilder exhibiciones = new StringBuilder(
+                "\nExhibiciones con ComponentesCine.Butacas Disponibles: "
+        );
         StringBuilder nombresActores = new StringBuilder();
 
         for(ExhibicionPelicula exhibicionPelicula : exhibicionesPelicula){
